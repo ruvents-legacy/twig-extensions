@@ -1,0 +1,18 @@
+--TEST--
+"sort" filter
+--TEMPLATE--
+{{ {a: 2, b: 1}|sort is same as({b: 1, a: 2}) ? 'OK' }}
+{{ {a: '2', b: '12'}|sort(preserve_keys=false, flags=constant('SORT_NATURAL')) is same as(['2','12']) ? 'OK' }}
+{{ traversable|sort|join }}
+--DATA--
+return [
+    'traversable' => new ArrayObject([
+        0 => 3,
+        1 => 1,
+        2 => 2
+    ])
+]
+--EXPECT--
+OK
+OK
+123

@@ -1,0 +1,18 @@
+--TEST--
+"ksort" filter
+--TEMPLATE--
+{{ {b: 1, a: 2}|ksort is same as({a: 2, b: 1}) ? 'OK' }}
+{{ {'12': 'a', '2': 'b'}|ksort(flags=constant('SORT_NATURAL')) is same as({'2': 'b', '12': 'a'}) ? 'OK' }}
+{{ traversable|ksort|join }}
+--DATA--
+return [
+    'traversable' => new ArrayObject([
+        0 => 3,
+        2 => 1,
+        1 => 2
+    ])
+]
+--EXPECT--
+OK
+OK
+321

@@ -1,0 +1,10 @@
+--TEST--
+"instanceof" test
+--TEMPLATE--
+{{ object is instanceof('Ruvents\\TwigExtensions\\Fixtures\\UsortContainer') ? 'OK' }}
+--DATA--
+return [
+    'object' => new Ruvents\TwigExtensions\Fixtures\UsortContainer()
+]
+--EXPECT--
+OK

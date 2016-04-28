@@ -2,6 +2,9 @@
 
 namespace Ruvents\TwigExtensions;
 
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
+
 /**
  * Class SortExtension
  */
@@ -13,11 +16,25 @@ class SortExtension extends \Twig_Extension
     protected $usortContainer;
 
     /**
-     * @param UsortContainerInterface|null $usortContainer
+     * @var PropertyAccessorInterface
      */
-    public function __construct(UsortContainerInterface $usortContainer = null)
-    {
+    protected $propertyAccessor;
+
+    /**
+     * @param UsortContainerInterface|null   $usortContainer
+     * @param PropertyAccessorInterface|null $propertyAccessor
+     */
+    public function __construct(
+        UsortContainerInterface $usortContainer = null,
+        PropertyAccessorInterface $propertyAccessor = null
+    ) {
         $this->usortContainer = $usortContainer;
+
+        if (!isset($propertyAccessor)) {
+            $propertyAccessor = PropertyAccess::createPropertyAccessor();
+        }
+
+        $this->propertyAccessor = $propertyAccessor;
     }
 
     /**
@@ -26,7 +43,7 @@ class SortExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('sort', function ($array, $preserveKeys = true, $flags = null) {
+            new \Twig_SimpleFilter('sort', function ($array, $flags = null, $preserveKeys = true) {
                 $this->prepareArray($array);
 
                 if ($preserveKeys) {
@@ -37,28 +54,10 @@ class SortExtension extends \Twig_Extension
 
                 return $array;
             }),
-            new \Twig_SimpleFilter('rsort', function ($array, $preserveKeys = true, $flags = null) {
-                $this->prepareArray($array);
-
-                if ($preserveKeys) {
-                    arsort($array, $flags);
-                } else {
-                    rsort($array, $flags);
-                }
-
-                return $array;
-            }),
             new \Twig_SimpleFilter('ksort', function ($array, $flags = null) {
                 $this->prepareArray($array);
 
                 ksort($array, $flags);
-
-                return $array;
-            }),
-            new \Twig_SimpleFilter('krsort', function ($array, $flags = null) {
-                $this->prepareArray($array);
-
-                krsort($array, $flags);
 
                 return $array;
             }),
@@ -89,6 +88,22 @@ class SortExtension extends \Twig_Extension
 
                 return $array;
             }),
+            new \Twig_SimpleFilter('sortBy', function ($array, $path, $preserveKeys = true) {
+                $function = $preserveKeys ? 'uasort' : 'usort';
+
+                $function($array, function ($a, $b) use ($path) {
+                    $aValue = $this->propertyAccessor->getValue($a, $path);
+                    $bValue = $this->propertyAccessor->getValue($b, $path);
+
+                    if ($aValue == $bValue) {
+                        return 0;
+                    }
+
+                    return $aValue > $bValue ? 1 : -1;
+                });
+
+                return $array;
+            }),
         ];
     }
 
@@ -97,14 +112,14 @@ class SortExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'ruvents_twig_sort_extension';
+        return 'ruvents_sort_twig_extension';
     }
 
     /**
      * @param array|\Traversable $array
      * @throws \Twig_Error_Runtime
      */
-    protected function prepareArray(array &$array)
+    protected function prepareArray(&$array)
     {
         if ($array instanceof \Traversable) {
             $array = iterator_to_array($array);

@@ -1,0 +1,15 @@
+--TEST--
+"uksort" filter
+--TEMPLATE--
+{{ {a: 1, b: 2}|uksort('rsort') is same as({b: 2, a: 1}) ? 'OK' }}
+{{ traversable|uksort('rsort')|join }}
+--DATA--
+return [
+    'traversable' => new ArrayObject([
+        'a' => 1,
+        'b' => 2,
+    ])
+]
+--EXPECT--
+OK
+21

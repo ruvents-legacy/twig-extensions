@@ -1,0 +1,15 @@
+--TEST--
+"natsort" filter
+--TEMPLATE--
+{{ {b: '12', a: '2'}|natsort is same as({a: '2', b: '12'}) ? 'OK' }}
+{{ traversable|natsort|join }}
+--DATA--
+return [
+    'traversable' => new ArrayObject([
+        'b' => '12',
+        'a' => '2'
+    ])
+]
+--EXPECT--
+OK
+212

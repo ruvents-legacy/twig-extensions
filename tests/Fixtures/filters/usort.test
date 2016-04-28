@@ -1,0 +1,17 @@
+--TEST--
+"usort" filter
+--TEMPLATE--
+{{ {b: 1, a: 2}|usort('rsort') is same as({a: 2, b: 1}) ? 'OK' }}
+{{ {b: 1, a: 2}|usort('rsort', false) is same as([2,1]) ? 'OK' }}
+{{ traversable|usort('rsort')|join }}
+--DATA--
+return [
+    'traversable' => new ArrayObject([
+        'b' => 1,
+        'a' => 2,
+    ])
+]
+--EXPECT--
+OK
+OK
+21

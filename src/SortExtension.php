@@ -69,6 +69,10 @@ class SortExtension extends \Twig_Extension
                 return $array;
             }),
             new \Twig_SimpleFilter('usort', function ($array, $name, $preserveKeys = true) {
+                if (null === $this->usortContainer) {
+                    throw new \Twig_Error_Runtime('Usort container is not set.');
+                }
+
                 $this->prepareArray($array);
                 $callable = $this->getUsort($name);
 
@@ -81,6 +85,10 @@ class SortExtension extends \Twig_Extension
                 return $array;
             }),
             new \Twig_SimpleFilter('uksort', function ($array, $name) {
+                if (null === $this->usortContainer) {
+                    throw new \Twig_Error_Runtime('Usort container is not set.');
+                }
+
                 $this->prepareArray($array);
                 $callable = $this->getUsort($name);
 
@@ -112,14 +120,14 @@ class SortExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'ruvents_sort_twig_extension';
+        return 'ruvents_twig_extensions.sort';
     }
 
     /**
      * @param array|\Traversable $array
      * @throws \Twig_Error_Runtime
      */
-    protected function prepareArray(&$array)
+    private function prepareArray(&$array)
     {
         if ($array instanceof \Traversable) {
             $array = iterator_to_array($array);
@@ -134,7 +142,7 @@ class SortExtension extends \Twig_Extension
      * @return \Closure
      * @throws \Twig_Error_Runtime
      */
-    protected function getUsort($name)
+    private function getUsort($name)
     {
         if (!isset($this->usortContainer->getUsorts()[$name])) {
             throw new \Twig_Error_Runtime(sprintf(

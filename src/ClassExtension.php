@@ -24,6 +24,6 @@ class ClassExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'ruvents_class_twig_extension';
+        return 'ruvents_twig_extensions.class';
     }
 }

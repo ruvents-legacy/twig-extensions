@@ -25,7 +25,7 @@ class InflectorExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('tableize', function ($string) {
+            new \Twig_SimpleFilter('underscorize', function ($string) {
                 return Inflector::tableize($string);
             }),
             new \Twig_SimpleFilter('classify', function ($string) {

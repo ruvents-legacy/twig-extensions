@@ -1,0 +1,12 @@
+--TEST--
+"underscorize" filter
+--TEMPLATE--
+{{ 'ClassName'|underscorize is same as('class_name') ? 'OK' }}
+{{ 'className'|underscorize is same as('class_name') ? 'OK' }}
+{{ 'class_name'|underscorize is same as('class_name') ? 'OK' }}
+--DATA--
+return []
+--EXPECT--
+OK
+OK
+OK

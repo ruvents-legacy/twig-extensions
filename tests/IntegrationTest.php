@@ -12,7 +12,7 @@ class IntegrationTest extends \Twig_Test_IntegrationTestCase
             new ClassExtension(),
             new SortByExtension(),
             new SortExtension(),
-            new TextExtension(),
+            new InflectorExtension(),
             new UsortExtension(new ComparatorsContainer()),
         );
     }

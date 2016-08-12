@@ -5,10 +5,20 @@ namespace Ruvents\TwigExtensions;
 use Doctrine\Common\Inflector\Inflector;
 
 /**
- * Class TextExtension
+ * Class InflectorExtension
  */
-class TextExtension extends \Twig_Extension
+class InflectorExtension extends \Twig_Extension
 {
+    /**
+     * @throws \RuntimeException
+     */
+    public function __construct()
+    {
+        if (!class_exists('Doctrine\Common\Inflector\Inflector')) {
+            throw new \RuntimeException('Intall Doctrine Inflector library to use InflectorExtension.');
+        }
+    }
+
     /**
      * @inheritdoc
      */
@@ -35,6 +45,6 @@ class TextExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'ruvents_twig_extensions.text';
+        return 'ruvents_twig_extensions.inflector';
     }
 }

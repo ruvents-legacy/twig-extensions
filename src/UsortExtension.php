@@ -13,9 +13,9 @@ class UsortExtension extends \Twig_Extension
     private $comparators;
 
     /**
-     * @param ComparatorsAbstractContainer|null $comparators
+     * @param ComparatorsAbstractContainer $comparators
      */
-    public function __construct(ComparatorsAbstractContainer $comparators = null)
+    public function __construct(ComparatorsAbstractContainer $comparators)
     {
         $this->comparators = $comparators;
     }

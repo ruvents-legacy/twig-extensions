@@ -13,8 +13,8 @@ class ClassExtension extends \Twig_Extension
     public function getTests()
     {
         return [
-            new \Twig_SimpleTest('instanceof', function ($value, $class) {
-                return $value instanceof $class;
+            new \Twig_SimpleTest('instanceof', function ($value, $className) {
+                return $value instanceof $className;
             }),
         ];
     }

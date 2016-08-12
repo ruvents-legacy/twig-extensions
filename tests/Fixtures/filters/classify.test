@@ -1,0 +1,12 @@
+--TEST--
+"classify" filter
+--TEMPLATE--
+{{ 'class_name'|classify is same as('ClassName') ? 'OK' }}
+{{ 'className'|classify is same as('ClassName') ? 'OK' }}
+{{ 'ClassName'|classify is same as('ClassName') ? 'OK' }}
+--DATA--
+return []
+--EXPECT--
+OK
+OK
+OK

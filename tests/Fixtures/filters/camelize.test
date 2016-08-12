@@ -1,0 +1,12 @@
+--TEST--
+"camelize" filter
+--TEMPLATE--
+{{ 'ClassName'|camelize is same as('className') ? 'OK' }}
+{{ 'className'|camelize is same as('className') ? 'OK' }}
+{{ 'class_name'|camelize is same as('className') ? 'OK' }}
+--DATA--
+return []
+--EXPECT--
+OK
+OK
+OK

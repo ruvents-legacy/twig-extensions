@@ -3,38 +3,46 @@
 namespace Ruvents\TwigExtensions;
 
 /**
- * Class SortExtension
+ * Class UsortExtension
  */
-class SortExtension extends \Twig_Extension
+class UsortExtension extends \Twig_Extension
 {
+    /**
+     * @var ComparatorsAbstractContainer
+     */
+    private $comparators;
+
+    /**
+     * @param ComparatorsAbstractContainer|null $comparators
+     */
+    public function __construct(ComparatorsAbstractContainer $comparators = null)
+    {
+        $this->comparators = $comparators;
+    }
+
     /**
      * @inheritdoc
      */
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('sort', function ($traversable, $flags = null, $preserveKeys = true) {
+            new \Twig_SimpleFilter('usort', function ($traversable, $name, $preserveKeys = true) {
+                $comparator = $this->comparators->get($name);
                 $array = $this->toArray($traversable);
 
                 if ($preserveKeys) {
-                    asort($array, $flags);
+                    uasort($array, $comparator);
                 } else {
-                    sort($array, $flags);
+                    usort($array, $comparator);
                 }
 
                 return $array;
             }),
-            new \Twig_SimpleFilter('ksort', function ($traversable, $flags = null) {
+            new \Twig_SimpleFilter('uksort', function ($traversable, $name) {
+                $comparator = $this->comparators->get($name);
                 $array = $this->toArray($traversable);
 
-                ksort($array, $flags);
-
-                return $array;
-            }),
-            new \Twig_SimpleFilter('natsort', function ($traversable) {
-                $array = $this->toArray($traversable);
-
-                natsort($array);
+                uksort($array, $comparator);
 
                 return $array;
             }),
@@ -46,7 +54,7 @@ class SortExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'ruvents_twig_extensions.sort';
+        return 'ruvents_twig_extensions.usort';
     }
 
     /**

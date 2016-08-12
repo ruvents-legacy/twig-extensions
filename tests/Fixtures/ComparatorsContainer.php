@@ -2,17 +2,11 @@
 
 namespace Ruvents\TwigExtensions\Fixtures;
 
-use Ruvents\TwigExtensions\UsortContainerInterface;
+use Ruvents\TwigExtensions\ComparatorsAbstractContainer;
 
-/**
- * Class UsortContainer
- */
-class UsortContainer implements UsortContainerInterface
+class ComparatorsContainer extends ComparatorsAbstractContainer
 {
-    /**
-     * @return array
-     */
-    public function getUsorts()
+    public function all()
     {
         return [
             'rsort' => function ($a, $b) {

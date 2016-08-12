@@ -1,0 +1,12 @@
+--TEST--
+"ucwords" filter
+--TEMPLATE--
+{{ 'hello. world'|ucwords is same as('Hello. World') ? 'OK' }}
+{{ 'hello  world'|ucwords is same as('Hello  World') ? 'OK' }}
+{{ 'Hello world'|ucwords(' ') is same as('Hello World') ? 'OK' }}
+--DATA--
+return []
+--EXPECT--
+OK
+OK
+OK

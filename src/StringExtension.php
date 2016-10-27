@@ -13,8 +13,8 @@ class StringExtension extends \Twig_Extension
             new \Twig_SimpleFilter('cleartags', function ($string) {
                 return preg_replace('/<([a-z][a-z0-9]*)[^>]*?(\/?)>/i', '<$1$2>', $string);
             }),
-            new \Twig_SimpleFilter('respace', function ($string, $mode = 's') {
-                return preg_replace("/\p{Z$mode}+/ui", ' ', $string);
+            new \Twig_SimpleFilter('respace', function ($string) {
+                return preg_replace("/[\s\p{Z}]+/ui", ' ', $string);
             }),
         ];
     }

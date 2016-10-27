@@ -4,9 +4,6 @@ namespace Ruvents\TwigExtensions;
 
 use Doctrine\Common\Inflector\Inflector;
 
-/**
- * Class InflectorExtension
- */
 class InflectorExtension extends \Twig_Extension
 {
     /**
@@ -20,7 +17,7 @@ class InflectorExtension extends \Twig_Extension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getFilters()
     {
@@ -41,7 +38,7 @@ class InflectorExtension extends \Twig_Extension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getName()
     {

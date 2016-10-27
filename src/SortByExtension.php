@@ -5,9 +5,6 @@ namespace Ruvents\TwigExtensions;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
-/**
- * Class SortByExtension
- */
 class SortByExtension extends \Twig_Extension
 {
     /**
@@ -28,7 +25,7 @@ class SortByExtension extends \Twig_Extension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getFilters()
     {
@@ -53,7 +50,7 @@ class SortByExtension extends \Twig_Extension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getName()
     {

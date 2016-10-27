@@ -2,13 +2,10 @@
 
 namespace Ruvents\TwigExtensions;
 
-/**
- * Class ClassExtension
- */
 class ClassExtension extends \Twig_Extension
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getTests()
     {
@@ -20,7 +17,7 @@ class ClassExtension extends \Twig_Extension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getName()
     {

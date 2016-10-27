@@ -2,9 +2,6 @@
 
 namespace Ruvents\TwigExtensions;
 
-/**
- * Class UsortAbstractContainer
- */
 abstract class ComparatorsAbstractContainer
 {
     /**

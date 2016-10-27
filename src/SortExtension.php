@@ -2,13 +2,10 @@
 
 namespace Ruvents\TwigExtensions;
 
-/**
- * Class SortExtension
- */
 class SortExtension extends \Twig_Extension
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getFilters()
     {
@@ -42,7 +39,7 @@ class SortExtension extends \Twig_Extension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getName()
     {

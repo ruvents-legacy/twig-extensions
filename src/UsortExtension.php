@@ -2,9 +2,6 @@
 
 namespace Ruvents\TwigExtensions;
 
-/**
- * Class UsortExtension
- */
 class UsortExtension extends \Twig_Extension
 {
     /**
@@ -21,7 +18,7 @@ class UsortExtension extends \Twig_Extension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getFilters()
     {
@@ -50,7 +47,7 @@ class UsortExtension extends \Twig_Extension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getName()
     {

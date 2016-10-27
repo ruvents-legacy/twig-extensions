@@ -1,0 +1,8 @@
+--TEST--
+"cleartags" filter
+--TEMPLATE--
+{% filter cleartags|raw %}<span class="class" style="padding-top: 40px;"> content </span>{% endfilter %}
+--DATA--
+return []
+--EXPECT--
+<span> content </span>

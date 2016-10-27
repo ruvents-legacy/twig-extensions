@@ -1,0 +1,10 @@
+--TEST--
+"respace" filter
+--TEMPLATE--
+{{ string|respace }}
+--DATA--
+return [
+    'string' => html_entity_decode("a  b\tc\rd\ne&nbsp;&nbsp;f")
+]
+--EXPECT--
+a b c d e f

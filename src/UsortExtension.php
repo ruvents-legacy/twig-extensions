@@ -2,6 +2,9 @@
 
 namespace Ruvents\TwigExtensions;
 
+/**
+ * @deprecated since 2.0.2 (to be removed in 3.0)
+ */
 class UsortExtension extends \Twig_Extension
 {
     /**
@@ -56,6 +59,7 @@ class UsortExtension extends \Twig_Extension
 
     /**
      * @param array|\Traversable $traversable
+     *
      * @return array
      * @throws \Twig_Error_Runtime
      */

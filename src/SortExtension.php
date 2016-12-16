@@ -48,6 +48,7 @@ class SortExtension extends \Twig_Extension
 
     /**
      * @param array|\Traversable $traversable
+     *
      * @return array
      * @throws \Twig_Error_Runtime
      */

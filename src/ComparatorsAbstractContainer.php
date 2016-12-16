@@ -2,6 +2,9 @@
 
 namespace Ruvents\TwigExtensions;
 
+/**
+ * @deprecated since 2.0.2 (to be removed in 3.0)
+ */
 abstract class ComparatorsAbstractContainer
 {
     /**
@@ -11,6 +14,7 @@ abstract class ComparatorsAbstractContainer
 
     /**
      * @param string $name
+     *
      * @return bool
      */
     public function has($name)
@@ -20,7 +24,10 @@ abstract class ComparatorsAbstractContainer
 
     /**
      * @param string $name
+     *
      * @return \Closure
+     *
+     * @throws \OutOfBoundsException
      */
     public function get($name)
     {

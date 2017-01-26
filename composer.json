@@ -15,8 +15,7 @@
     },
     "require-dev": {
         "symfony/property-access": "^2.8||^3.0",
-        "doctrine/inflector": "^1.0",
-        "twig/twig": "^1.20"
+        "doctrine/inflector": "^1.0"
     },
     "suggest": {
         "symfony/property-access": "Required for SortByExtension",
@@ -32,7 +31,11 @@
             "Ruvents\\TwigExtensions\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
+    "config": {
+        "platform": {
+            "php": "5.4"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.0-dev"

@@ -3,27 +3,11 @@
 namespace Ruvents\TwigExtensions;
 
 /**
- * This class provides a copy of the localizeddate filter from https://github.com/twigphp/Twig-extensions
- * and adds a possibility to fix incorrect ICU timezones by passing a from-to array
+ * This class provides localizeddate filter from https://github.com/twigphp/Twig-extensions
+ * which uses native php timezones settings instead of the intl ones
  */
 class IntlDateExtension extends \Twig_Extension
 {
-    /**
-     * @var string[]
-     */
-    private $timezones;
-
-    /**
-     * @param string[] $timezones Timezones fix matrix [from => to]
-     *                            ['Europe/Moscow' => 'Etc/GMT-3']
-     *
-     * @throws \RuntimeException
-     */
-    public function __construct(array $timezones = [])
-    {
-        $this->timezones = $timezones;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -60,17 +44,9 @@ class IntlDateExtension extends \Twig_Extension
                 );
 
                 $timestamp = $date->getTimestamp();
-                $timezoneName = $date->getTimezone()->getName();
 
-                if (isset($this->timezones[$timezoneName])) {
-                    $microTimestamp = $timestamp * 1000;
-                    $formatter->getTimeZone()->getOffset($microTimestamp, true, $raw, $dst);
-                    $microTimestamp -= $raw;
-                    \IntlTimeZone::createTimeZone($this->timezones[$timezoneName])
-                        ->getOffset($microTimestamp, true, $raw, $dst);
-                    $microTimestamp += $raw;
-                    $timestamp = $microTimestamp / 1000;
-                }
+                $formatter->getTimeZone()->getOffset($timestamp * 1000, true, $raw, $dst);
+                $timestamp += $date->getOffset() - ($raw + $dst) / 1000;
 
                 return $formatter->format($timestamp);
             }, ['needs_environment' => true]),

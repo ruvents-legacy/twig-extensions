@@ -63,9 +63,13 @@ class IntlDateExtension extends \Twig_Extension
                 $timezoneName = $date->getTimezone()->getName();
 
                 if (isset($this->timezones[$timezoneName])) {
-                    $originalOffset = $formatter->getTimeZone()->getRawOffset();
-                    $newOffset = \IntlTimeZone::createTimeZone($this->timezones[$timezoneName])->getRawOffset();
-                    $timestamp += ($newOffset - $originalOffset) / 1000;
+                    $microTimestamp = $timestamp * 1000;
+                    $formatter->getTimeZone()->getOffset($microTimestamp, true, $raw, $dst);
+                    $microTimestamp -= $raw;
+                    \IntlTimeZone::createTimeZone($this->timezones[$timezoneName])
+                        ->getOffset($microTimestamp, true, $raw, $dst);
+                    $microTimestamp += $raw;
+                    $timestamp = $microTimestamp / 1000;
                 }
 
                 return $formatter->format($timestamp);

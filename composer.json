@@ -16,11 +16,13 @@
     "require-dev": {
         "symfony/property-access": "^2.8||^3.0",
         "doctrine/inflector": "^1.0",
-        "twig/extensions": "^1.4"
+        "twig/extensions": "^1.4",
+        "symfony/http-foundation": "^2.0|^3.0"
     },
     "suggest": {
-        "symfony/property-access": "Required for SortByExtension",
-        "doctrine/inflector": "Required for TextExtension"
+        "symfony/property-access": "Required for sortBy filter",
+        "doctrine/inflector": "Required for Inflector Extension",
+        "symfony/http-foundation": "Required for base64 filter"
     },
     "autoload": {
         "psr-4": {

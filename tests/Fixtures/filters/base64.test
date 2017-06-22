@@ -1,0 +1,13 @@
+--TEST--
+"base64" filter
+--TEMPLATE--
+{{ file|base64 is same as('data:text/plain;base64,' ~ base64) }}
+--DATA--
+$file = __DIR__.'/../../../../../../tests/Fixtures/filters/base64.test';
+
+return [
+    'file' => new Symfony\Component\HttpFoundation\File\File(__DIR__.'/../../../../../../tests/Fixtures/filters/base64.test'),
+    'base64' => base64_encode(file_get_contents($file)),
+]
+--EXPECT--
+1

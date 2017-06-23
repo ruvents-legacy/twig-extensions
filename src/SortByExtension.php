@@ -30,7 +30,7 @@ class SortByExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('sortBy', function ($array, $path, $preserveKeys = true) {
+            new \Twig_SimpleFilter('sort_by', $sortBy = function ($array, $path, $preserveKeys = true) {
                 $function = $preserveKeys ? 'uasort' : 'usort';
 
                 $function($array, function ($a, $b) use ($path) {
@@ -46,6 +46,7 @@ class SortByExtension extends \Twig_Extension
 
                 return $array;
             }),
+            new \Twig_SimpleFilter('sortBy', $sortBy, ['deprecated' => true, 'alternative' => 'sort_by']),
         ];
     }
 

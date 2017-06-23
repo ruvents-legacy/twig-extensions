@@ -10,9 +10,11 @@ class StringExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('cleartags', function ($string) {
+            new \Twig_SimpleFilter('clear_tags', $clearTags = function ($string) {
                 return preg_replace('/<([a-z][a-z0-9]*)[^>]*?(\/?)>/i', '<$1$2>', $string);
             }),
+            new \Twig_SimpleFilter('cleartags', $clearTags,
+                ['deprecated' => true, 'alternative' => 'clear_tags']),
             new \Twig_SimpleFilter('respace', function ($string) {
                 return preg_replace("/[\s\p{Z}]+/ui", ' ', $string);
             }),

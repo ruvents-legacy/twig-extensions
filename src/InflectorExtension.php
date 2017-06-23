@@ -7,16 +7,6 @@ use Doctrine\Common\Inflector\Inflector;
 class InflectorExtension extends \Twig_Extension
 {
     /**
-     * @throws \RuntimeException
-     */
-    public function __construct()
-    {
-        if (!class_exists('Doctrine\Common\Inflector\Inflector')) {
-            throw new \RuntimeException('Intall Doctrine Inflector library to use InflectorExtension.');
-        }
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getFilters()

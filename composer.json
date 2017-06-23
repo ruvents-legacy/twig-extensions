@@ -21,10 +21,10 @@
         "erusev/parsedown-extra": "^0.7.1"
     },
     "suggest": {
-        "symfony/property-access": "Required for sortBy filter",
-        "doctrine/inflector": "Required for Inflector Extension",
-        "symfony/http-foundation": "Required for base64 filter",
-        "erusev/parsedown-extra": "Required for md_line, md_text filters"
+        "symfony/property-access": "Required for SortByExtension",
+        "doctrine/inflector": "Required for InflectorExtension",
+        "symfony/http-foundation": "Required for FileExtension",
+        "erusev/parsedown-extra": "Required for MarkdownExtension"
     },
     "autoload": {
         "psr-4": {

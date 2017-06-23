@@ -20,7 +20,7 @@
     },
     "suggest": {
         "symfony/property-access": "Required for SortByExtension",
-        "doctrine/inflector": "Required for TextExtension"
+        "doctrine/inflector": "Required for InflectorExtension"
     },
     "autoload": {
         "psr-4": {

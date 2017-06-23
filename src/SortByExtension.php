@@ -12,15 +12,8 @@ class SortByExtension extends \Twig_Extension
      */
     private $propertyAccessor;
 
-    /**
-     * @throws \RuntimeException
-     */
     public function __construct()
     {
-        if (!class_exists('Symfony\Component\PropertyAccess\PropertyAccess')) {
-            throw new \RuntimeException('Intall Symfony PropertyAccess Component to use SortByExtension.');
-        }
-
         $this->propertyAccessor = PropertyAccess::createPropertyAccessor();
     }
 

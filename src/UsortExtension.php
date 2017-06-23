@@ -2,9 +2,6 @@
 
 namespace Ruvents\TwigExtensions;
 
-/**
- * @deprecated since 2.0.2 (to be removed in 3.0)
- */
 class UsortExtension extends \Twig_Extension
 {
     /**
@@ -12,9 +9,6 @@ class UsortExtension extends \Twig_Extension
      */
     private $comparators;
 
-    /**
-     * @param ComparatorsAbstractContainer $comparators
-     */
     public function __construct(ComparatorsAbstractContainer $comparators)
     {
         $this->comparators = $comparators;
@@ -37,7 +31,7 @@ class UsortExtension extends \Twig_Extension
                 }
 
                 return $array;
-            }),
+            }, ['deprecated' => true]),
             new \Twig_SimpleFilter('uksort', function ($traversable, $name) {
                 $comparator = $this->comparators->get($name);
                 $array = $this->toArray($traversable);
@@ -45,7 +39,7 @@ class UsortExtension extends \Twig_Extension
                 uksort($array, $comparator);
 
                 return $array;
-            }),
+            }, ['deprecated' => true]),
         ];
     }
 

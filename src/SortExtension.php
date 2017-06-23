@@ -54,10 +54,10 @@ class SortExtension extends \Twig_Extension
      */
     private function toArray($traversable)
     {
-        if ($traversable instanceof \Traversable) {
-            return iterator_to_array($traversable);
-        } elseif (is_array($traversable)) {
+        if (is_array($traversable)) {
             return $traversable;
+        } elseif ($traversable instanceof \Traversable) {
+            return iterator_to_array($traversable);
         }
 
         throw new \Twig_Error_Runtime(sprintf(

@@ -17,12 +17,14 @@
         "symfony/property-access": "^2.8||^3.0",
         "doctrine/inflector": "^1.0",
         "twig/extensions": "^1.4",
-        "symfony/http-foundation": "^2.0|^3.0"
+        "symfony/http-foundation": "^2.0|^3.0",
+        "erusev/parsedown-extra": "^0.7.1"
     },
     "suggest": {
         "symfony/property-access": "Required for sortBy filter",
         "doctrine/inflector": "Required for Inflector Extension",
-        "symfony/http-foundation": "Required for base64 filter"
+        "symfony/http-foundation": "Required for base64 filter",
+        "erusev/parsedown-extra": "Required for md_line, md_text filters"
     },
     "autoload": {
         "psr-4": {
@@ -41,7 +43,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.1-dev"
+            "dev-master": "2.2-dev"
         }
     }
 }

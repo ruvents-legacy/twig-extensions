@@ -16,6 +16,7 @@ class IntegrationTest extends \Twig_Test_IntegrationTestCase
             new UsortExtension(new ComparatorsContainer()),
             new StringExtension(),
             new FileExtension(),
+            new MarkdownExtension(),
         );
     }
 

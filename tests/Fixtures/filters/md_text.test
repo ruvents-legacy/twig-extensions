@@ -2,53 +2,18 @@
 "md_text" filter
 --TEMPLATE--
 {% filter md_text %}
-Welcome to the demo of Parsedown Extra [^1]:
+Welcome to the demo:
 
 1. Write Markdown text on the left
 2. Hit the __Parse__ button or `⌘ + Enter`
 3. See the result to on the right
-
-This is an interactive demo of
-
-[^1]: [Parsedown Extra](https://github.com/erusev/parsedown-extra) is an extension of [Parsedown](/) that adds support for [Markdown Extra](https://michelf.ca/projects/php-markdown/extra/).
-{% endfilter %}
-
-{{ 'http://parsedown.org/extra/'|md_text }}
-{{ 'http://parsedown.org/extra/'|md_text(autoUrls=false) }}
-{{ '<span>html</span>'|md_text }}
-{{ '<span>html</span>'|md_text(html=true) }}
-{% filter md_text %}
-1
-2
-{% endfilter %}
-
-{% filter md_text(lineBreaks=false) %}
-1
-2
 {% endfilter %}
 --DATA--
 return []
 --EXPECT--
-<p>Welcome to the demo of Parsedown Extra <sup id="fnref1:1"><a href="#fn:1" class="footnote-ref">1</a></sup>:</p>
+<p>Welcome to the demo:</p>
 <ol>
 <li>Write Markdown text on the left</li>
 <li>Hit the <strong>Parse</strong> button or <code>⌘ + Enter</code></li>
 <li>See the result to on the right</li>
 </ol>
-<p>This is an interactive demo of</p>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn:1">
-<p><a href="https://github.com/erusev/parsedown-extra">Parsedown Extra</a> is an extension of <a href="/">Parsedown</a> that adds support for <a href="https://michelf.ca/projects/php-markdown/extra/">Markdown Extra</a>.&#160;<a href="#fnref1:1" rev="footnote" class="footnote-backref">&#8617;</a></p>
-</li>
-</ol>
-</div>
-<p><a href="http://parsedown.org/extra/">http://parsedown.org/extra/</a></p>
-<p>http://parsedown.org/extra/</p>
-<p>&lt;span&gt;html&lt;/span&gt;</p>
-<p><span>html</span></p>
-<p>1<br />
-2</p>
-<p>1
-2</p>

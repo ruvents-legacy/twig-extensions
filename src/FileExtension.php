@@ -3,8 +3,10 @@
 namespace Ruvents\TwigExtensions;
 
 use Symfony\Component\HttpFoundation\File\File;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
-class FileExtension extends \Twig_Extension
+class FileExtension extends AbstractExtension
 {
     /**
      * {@inheritdoc}
@@ -12,7 +14,7 @@ class FileExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('base64', function ($file) {
+            new TwigFilter('base64', function ($file) {
                 if (!$file instanceof File) {
                     if (!is_string($file) && !(is_object($file) && method_exists($file, '__toString'))) {
                         throw new \InvalidArgumentException(

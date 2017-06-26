@@ -2,11 +2,15 @@
 
 namespace Ruvents\TwigExtensions;
 
+use Twig\Environment;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+
 /**
- * This class provides localizeddate filter from https://github.com/twigphp/Twig-extensions
- * which uses native php timezones settings instead of the intl ones
+ * This class provides same localizeddate filter from https://github.com/twigphp/Twig-extensions
+ * but uses native php timezone settings instead of the intl ones
  */
-class IntlDateExtension extends \Twig_Extension
+class IntlDateExtension extends AbstractExtension
 {
     /**
      * {@inheritdoc}
@@ -14,8 +18,8 @@ class IntlDateExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('localizeddate', function (
-                \Twig_Environment $env,
+            new TwigFilter('localizeddate', function (
+                Environment $env,
                 $date,
                 $dateFormat = 'medium',
                 $timeFormat = 'medium',
@@ -51,13 +55,5 @@ class IntlDateExtension extends \Twig_Extension
                 return $formatter->format($timestamp);
             }, ['needs_environment' => true]),
         );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'intl';
     }
 }

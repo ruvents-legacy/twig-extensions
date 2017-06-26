@@ -2,7 +2,10 @@
 
 namespace Ruvents\TwigExtensions;
 
-class ClassExtension extends \Twig_Extension
+use Twig\Extension\AbstractExtension;
+use Twig\TwigTest;
+
+class ClassExtension extends AbstractExtension
 {
     /**
      * {@inheritdoc}
@@ -10,17 +13,9 @@ class ClassExtension extends \Twig_Extension
     public function getTests()
     {
         return [
-            new \Twig_SimpleTest('instanceof', function ($value, $className) {
+            new TwigTest('instanceof', function ($value, $className) {
                 return $value instanceof $className;
             }),
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'ruvents_twig_extensions.class';
     }
 }

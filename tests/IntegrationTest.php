@@ -2,18 +2,16 @@
 
 namespace Ruvents\TwigExtensions;
 
-use Ruvents\TwigExtensions\Fixtures\ComparatorsContainer;
+use Twig\Test\IntegrationTestCase;
 
-class IntegrationTest extends \Twig_Test_IntegrationTestCase
+class IntegrationTest extends IntegrationTestCase
 {
     public function getExtensions()
     {
         return array(
             new ClassExtension(),
-            new SortByExtension(),
             new SortExtension(),
             new InflectorExtension(),
-            new UsortExtension(new ComparatorsContainer()),
             new StringExtension(),
             new FileExtension(),
             new MarkdownExtension(),

@@ -10,21 +10,15 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "twig/twig": "^1.20||^2.0"
+        "php": "^7.0",
+        "doctrine/inflector": "^1.1",
+        "erusev/parsedown": "^1.6",
+        "symfony/http-foundation": "^3.3",
+        "symfony/property-access": "^3.0",
+        "twig/twig": "^2.0"
     },
     "require-dev": {
-        "symfony/property-access": "^2.8||^3.0",
-        "doctrine/inflector": "^1.0",
-        "twig/extensions": "^1.4",
-        "symfony/http-foundation": "^2.0|^3.0",
-        "erusev/parsedown-extra": "^0.7.1"
-    },
-    "suggest": {
-        "symfony/property-access": "Required for SortByExtension",
-        "doctrine/inflector": "Required for InflectorExtension",
-        "symfony/http-foundation": "Required for FileExtension",
-        "erusev/parsedown-extra": "Required for MarkdownExtension"
+        "twig/extensions": "^1.4"
     },
     "autoload": {
         "psr-4": {
@@ -38,12 +32,12 @@
     },
     "config": {
         "platform": {
-            "php": "5.4"
+            "php": "7.0"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.2-dev"
+            "dev-master": "3.0-dev"
         }
     }
 }

@@ -2,16 +2,26 @@
 
 namespace Ruvents\TwigExtensions;
 
-class MarkdownExtension extends \Twig_Extension
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+
+class MarkdownExtension extends AbstractExtension
 {
     /**
-     * @var \ParsedownExtra
+     * @var \Parsedown
      */
     private $parsedown;
 
-    public function __construct(\ParsedownExtra $parsedown = null)
+    public function __construct(\Parsedown $parsedown = null)
     {
-        $this->parsedown = $parsedown ?: new \ParsedownExtra();
+        if (null === $parsedown) {
+            $parsedown = (new \Parsedown())
+                ->setBreaksEnabled(true)
+                ->setMarkupEscaped(true)
+                ->setUrlsLinked(true);
+        }
+
+        $this->parsedown = $parsedown;
     }
 
     /**
@@ -20,26 +30,12 @@ class MarkdownExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('md_line',
-                function ($string, $lineBreaks = true, $html = false, $autoUrls = true) {
-                    return $this->parsedown
-                        ->setBreaksEnabled($lineBreaks)
-                        ->setMarkupEscaped(!$html)
-                        ->setUrlsLinked($autoUrls)
-                        ->line($string);
-                },
-                ['is_safe' => ['html']]
-            ),
-            new \Twig_SimpleFilter('md_text',
-                function ($string, $lineBreaks = true, $html = false, $autoUrls = true) {
-                    return $this->parsedown
-                        ->setBreaksEnabled($lineBreaks)
-                        ->setMarkupEscaped(!$html)
-                        ->setUrlsLinked($autoUrls)
-                        ->text($string);
-                },
-                ['is_safe' => ['html']]
-            ),
+            new TwigFilter('md_line', function ($string) {
+                return $this->parsedown->line($string);
+            }, ['is_safe' => ['html']]),
+            new TwigFilter('md_text', function ($string) {
+                return $this->parsedown->text($string);
+            }, ['is_safe' => ['html']]),
         ];
     }
 }

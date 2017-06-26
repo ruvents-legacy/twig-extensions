@@ -1,10 +1,10 @@
 --TEST--
 "instanceof" test
 --TEMPLATE--
-{{ object is instanceof('Ruvents\\TwigExtensions\\Fixtures\\ComparatorsContainer') ? 'OK' }}
+{{ object is instanceof('Ruvents\\TwigExtensions\\ClassExtension') ? 'OK' }}
 --DATA--
 return [
-    'object' => new Ruvents\TwigExtensions\Fixtures\ComparatorsContainer()
+    'object' => new Ruvents\TwigExtensions\ClassExtension()
 ]
 --EXPECT--
 OK

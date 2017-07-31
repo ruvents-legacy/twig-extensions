@@ -10,11 +10,12 @@ class IntegrationTest extends IntegrationTestCase
     {
         return array(
             new ClassExtension(),
-            new SortExtension(),
-            new InflectorExtension(),
-            new StringExtension(),
             new FileExtension(),
+            new InflectorExtension(),
             new MarkdownExtension(),
+            new SortExtension(),
+            new StringExtension(),
+            new TimeExtension(),
         );
     }
 

@@ -1,0 +1,15 @@
+--TEST--
+"to_seconds" filter
+--TEMPLATE--
+{{ PT55S|to_seconds() }}
+{{ P1M|to_seconds('01.07.2017', 'since') }}
+{{ P1M|to_seconds('01.08.2017', 'till') }}
+--DATA--
+return [
+    'PT55S' => new \DateInterval('PT55S'),
+    'P1M' => new \DateInterval('P1M'),
+];
+--EXPECT--
+55
+2678400
+2678400

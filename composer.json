@@ -18,7 +18,8 @@
         "twig/twig": "^2.0"
     },
     "require-dev": {
-        "twig/extensions": "^1.4"
+        "twig/extensions": "^1.4",
+        "symfony/intl": "^3.0"
     },
     "autoload": {
         "psr-4": {

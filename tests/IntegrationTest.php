@@ -15,6 +15,7 @@ class IntegrationTest extends IntegrationTestCase
             new MarkdownExtension(),
             new SortExtension(),
             new StringExtension(),
+            new SymfonyIntlExtension(),
             new TimeExtension(),
         );
     }

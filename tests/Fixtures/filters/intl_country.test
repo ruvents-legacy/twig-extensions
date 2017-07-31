@@ -1,0 +1,10 @@
+--TEST--
+"intl_country" filter
+--TEMPLATE--
+{{ 'RU'|intl_country('ru') is same as('Россия') ? 1 }}
+{{ {ru: 'RU', gb: 'GB'}|intl_country('ru') is same as({ru: 'Россия', gb: 'Великобритания'}) ? 1 }}
+--DATA--
+return []
+--EXPECT--
+1
+1

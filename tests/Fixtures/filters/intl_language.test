@@ -1,0 +1,15 @@
+--TEST--
+"intl_language" filter
+--TEMPLATE--
+{{ value|intl_language(region, locale) is same as(result) ? 1 }}
+{{ [value]|intl_language(region, locale) is same as([result]) ? 1 }}
+--DATA--
+return [
+    'value' => $value = 'de',
+    'region' => $region = 'AT',
+    'locale' => $locale = 'ru',
+    'result' => Symfony\Component\Intl\Intl::getLanguageBundle()->getLanguageName($value, $region, $locale),
+]
+--EXPECT--
+1
+1

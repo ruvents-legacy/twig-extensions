@@ -1,0 +1,14 @@
+--TEST--
+"intl_locale" filter
+--TEMPLATE--
+{{ value|intl_locale(display_locale) is same as(result) ? 1 }}
+{{ [value]|intl_locale(display_locale) is same as([result]) ? 1 }}
+--DATA--
+return [
+    'value' => $value = 'zh_Hans_MO',
+    'display_locale' => $displayLocale = 'ru',
+    'result' => Symfony\Component\Intl\Intl::getLocaleBundle()->getLocaleName($value, $displayLocale),
+]
+--EXPECT--
+1
+1

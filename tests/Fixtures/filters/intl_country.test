@@ -1,10 +1,14 @@
 --TEST--
 "intl_country" filter
 --TEMPLATE--
-{{ 'RU'|intl_country('ru') is same as('Россия') ? 1 }}
-{{ {ru: 'RU', gb: 'GB'}|intl_country('ru') is same as({ru: 'Россия', gb: 'Великобритания'}) ? 1 }}
+{{ value|intl_country(locale) is same as(result) ? 1 }}
+{{ [value]|intl_country(locale) is same as([result]) ? 1 }}
 --DATA--
-return []
+return [
+    'value' => $value = 'RU',
+    'locale' => $locale = 'ru',
+    'result' => Symfony\Component\Intl\Intl::getRegionBundle()->getCountryName($value, $locale),
+]
 --EXPECT--
 1
 1

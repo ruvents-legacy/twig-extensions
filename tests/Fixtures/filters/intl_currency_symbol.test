@@ -1,0 +1,14 @@
+--TEST--
+"intl_currency_symbol" filter
+--TEMPLATE--
+{{ value|intl_currency_symbol(locale) is same as(result) ? 1 }}
+{{ [value]|intl_currency_symbol(locale) is same as([result]) ? 1 }}
+--DATA--
+return [
+    'value' => $value = 'INR',
+    'locale' => $locale = 'ru',
+    'result' => Symfony\Component\Intl\Intl::getCurrencyBundle()->getCurrencySymbol($value, $locale),
+]
+--EXPECT--
+1
+1

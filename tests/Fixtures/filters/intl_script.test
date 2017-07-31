@@ -1,0 +1,15 @@
+--TEST--
+"intl_script" filter
+--TEMPLATE--
+{{ value|intl_script(language, locale) is same as(result) ? 1 }}
+{{ [value]|intl_script(language, locale) is same as([result]) ? 1 }}
+--DATA--
+return [
+    'value' => $value = 'Hans',
+    'language' => $language = 'en',
+    'locale' => $locale = 'ru',
+    'result' => Symfony\Component\Intl\Intl::getLanguageBundle()->getScriptName($value, $language, $locale),
+]
+--EXPECT--
+1
+1

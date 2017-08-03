@@ -25,7 +25,7 @@ class SortExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new TwigFilter('sort', function (iterable $iterable, $flags = null, $preserveKeys = true) {
+            new TwigFilter('sort', function ($iterable, $flags = null, $preserveKeys = true) {
                 $array = Helper::iterableToArray($iterable);
 
                 if ($preserveKeys) {
@@ -36,21 +36,21 @@ class SortExtension extends AbstractExtension
 
                 return $array;
             }),
-            new TwigFilter('ksort', function (iterable $iterable, $flags = null) {
+            new TwigFilter('ksort', function ($iterable, $flags = null) {
                 $array = Helper::iterableToArray($iterable);
 
                 ksort($array, $flags);
 
                 return $array;
             }),
-            new TwigFilter('natsort', function (iterable $iterable) {
+            new TwigFilter('natsort', function ($iterable) {
                 $array = Helper::iterableToArray($iterable);
 
                 natsort($array);
 
                 return $array;
             }),
-            new TwigFilter('sort_by', $sortBy = function (iterable $iterable, $path, $preserveKeys = true) {
+            new TwigFilter('sort_by', $sortBy = function ($iterable, $path, $preserveKeys = true) {
                 $array = Helper::iterableToArray($iterable);
                 $function = $preserveKeys ? 'uasort' : 'usort';
 
